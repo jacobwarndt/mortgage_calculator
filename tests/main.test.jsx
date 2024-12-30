@@ -39,7 +39,7 @@ describe('Mortgage Calculator', () => {
         });
 
         it('should contain a button with a "data-testid" of "submit"', () => {
-            const submit = screen.getByRole('button', { name: /submit/i });
+            const submit = screen.getByTestId('submit');
             expect(submit).toBeInTheDocument();
         });
     });
