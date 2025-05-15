@@ -6,6 +6,7 @@ function App() {
   const [rate, setRate] = useState("");
   const [term, setTerm] = useState("15");
   const [output, setOutput] = useState("");
+  const [schedule, setSchedule] = useState([]);
 
   const calculate = (balance, rate, term) => {
     const principal = parseFloat(balance);
@@ -18,8 +19,27 @@ function App() {
       const monthlyPayment = principal * (numerator / denominator);
       const formatted = monthlyPayment.toFixed(2);
       setOutput(`$${formatted} is your payment`);
+
+      let balanceRemaining = principal;
+      const scheduleArray = [];
+
+      for (let i = 1; i <= numberOfPayments; i++) {
+        const interestPayment = balanceRemaining * monthlyRate;
+        const principalPayment = monthlyPayment - interestPayment;
+        balanceRemaining -= principalPayment;
+
+        scheduleArray.push({
+          month: i,
+          principal: principalPayment.toFixed(2),
+          interest: interestPayment.toFixed(2),
+          balance: balanceRemaining > 0 ? balanceRemaining.toFixed(2) : "0.00"
+        });
+      }
+
+      setSchedule(scheduleArray);
     } else {
       setOutput("Please enter valid inputs.");
+      setSchedule([]);
     }
   };
 
@@ -68,6 +88,29 @@ function App() {
       </button>
 
       <div id="output" data-testid="output">{output}</div>
+
+      {schedule.length > 0 && (
+        <table className="schedule-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {schedule.map((row) => (
+              <tr key={row.month}>
+                <td>{row.month}</td>
+                <td>${row.principal}</td>
+                <td>${row.interest}</td>
+                <td>${row.balance}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
