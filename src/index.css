@@ -1,9 +1,8 @@
-/* Full-screen cozy background with a house and chimney */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1740&q=80");
+  background-image: url("https://cdn.pixabay.com/photo/2017/08/07/00/53/home-2596153_1280.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -11,26 +10,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
-/* Centered calculator box */
 .calculator-container {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 2rem 3rem;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
+  max-width: 450px;
   width: 100%;
   text-align: center;
+  margin: 2rem;
 }
 
-/* Header */
 h1 {
   margin-bottom: 1rem;
   color: #333;
 }
 
-/* Label and inputs */
 label {
   display: block;
   margin-top: 1rem;
@@ -39,7 +37,8 @@ label {
   color: #444;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.25rem;
@@ -49,7 +48,6 @@ input, select {
   box-sizing: border-box;
 }
 
-/* Button style */
 button {
   background-color: #6b8e23;
   color: white;
@@ -65,9 +63,28 @@ button:hover {
   background-color: #4f6b1a;
 }
 
-/* Output */
 #output {
   margin-top: 1.5rem;
   font-size: 1.2rem;
   color: #2e8b57;
+  font-weight: bold;
+}
+
+.schedule-table {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.schedule-table th {
+  background-color: #f0f0f0;
 }
