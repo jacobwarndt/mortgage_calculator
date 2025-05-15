@@ -1,32 +1,65 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 2rem 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url("https://cdn.pixabay.com/photo/2017/08/07/00/53/home-2596153_1280.jpg");
+  background-image: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1740&q=80");
   background-size: cover;
-  background-position: center;
+  background-attachment: fixed;
+  background-position: center center;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: auto;
+  align-items: flex-start;
+  overflow-y: auto;
 }
 
 .calculator-container {
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 2rem 3rem;
+  padding: 1rem;
   border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  max-width: 450px;
+  max-width: 600px;
   width: 100%;
   text-align: center;
   margin: 2rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.calculator-container.light {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+}
+
+.calculator-container.dark {
+  background-color: rgba(40, 40, 40, 0.95);
+  color: #f1f1f1;
+}
+
+.theme-toggle {
+  margin-bottom: 1rem;
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.theme-toggle:hover {
+  background-color: #222;
+}
+
+.calculator-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 2rem;
 }
 
 h1 {
   margin-bottom: 1rem;
-  color: #333;
 }
 
 label {
@@ -34,7 +67,6 @@ label {
   margin-top: 1rem;
   text-align: left;
   font-weight: bold;
-  color: #444;
 }
 
 input,
@@ -66,7 +98,6 @@ button:hover {
 #output {
   margin-top: 1.5rem;
   font-size: 1.2rem;
-  color: #2e8b57;
   font-weight: bold;
 }
 
@@ -82,9 +113,24 @@ button:hover {
   border: 1px solid #ccc;
   padding: 0.5rem;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.8);
 }
 
-.schedule-table th {
+.calculator-container.light .schedule-table th,
+.calculator-container.light .schedule-table td {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+}
+
+.calculator-container.light .schedule-table th {
   background-color: #f0f0f0;
+}
+
+.calculator-container.dark .schedule-table th,
+.calculator-container.dark .schedule-table td {
+  background-color: rgba(60, 60, 60, 0.9);
+  color: #f1f1f1;
+}
+
+.calculator-container.dark .schedule-table th {
+  background-color: rgba(90, 90, 90, 0.95);
 }
