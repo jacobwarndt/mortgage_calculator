@@ -7,6 +7,7 @@ function App() {
   const [term, setTerm] = useState("15");
   const [output, setOutput] = useState("");
   const [schedule, setSchedule] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
 
   const calculate = (balance, rate, term) => {
     const principal = parseFloat(balance);
@@ -44,73 +45,79 @@ function App() {
   };
 
   return (
-    <div className="calculator-container">
-      <h1>Mortgage Calculator</h1>
-
-      <label>
-        Loan Balance:
-        <input
-          data-testid="balance"
-          type="number"
-          value={balance}
-          onChange={(e) => setBalance(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Interest Rate (%):
-        <input
-          data-testid="rate"
-          type="number"
-          step="0.01"
-          value={rate}
-          onChange={(e) => setRate(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Loan Term (years):
-        <select
-          data-testid="term"
-          value={term}
-          onChange={(e) => setTerm(e.target.value)}
-        >
-          <option value="15">15</option>
-          <option value="30">30</option>
-        </select>
-      </label>
-
-      <button
-        data-testid="submit"
-        onClick={() => calculate(balance, rate, term)}
-      >
-        Calculate
+    <div className={`calculator-container ${darkMode ? "dark" : "light"}`}>
+      <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
       </button>
 
-      <div id="output" data-testid="output">{output}</div>
+      <div className="calculator-content">
+        <h1>Mortgage Calculator</h1>
 
-      {schedule.length > 0 && (
-        <table className="schedule-table">
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Principal</th>
-              <th>Interest</th>
-              <th>Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {schedule.map((row) => (
-              <tr key={row.month}>
-                <td>{row.month}</td>
-                <td>${row.principal}</td>
-                <td>${row.interest}</td>
-                <td>${row.balance}</td>
+        <label>
+          Loan Balance:
+          <input
+            data-testid="balance"
+            type="number"
+            value={balance}
+            onChange={(e) => setBalance(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Interest Rate (%):
+          <input
+            data-testid="rate"
+            type="number"
+            step="0.01"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Loan Term (years):
+          <select
+            data-testid="term"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+          >
+            <option value="15">15</option>
+            <option value="30">30</option>
+          </select>
+        </label>
+
+        <button
+          data-testid="submit"
+          onClick={() => calculate(balance, rate, term)}
+        >
+          Calculate
+        </button>
+
+        <div id="output" data-testid="output">{output}</div>
+
+        {schedule.length > 0 && (
+          <table className="schedule-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Balance</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            </thead>
+            <tbody>
+              {schedule.map((row) => (
+                <tr key={row.month}>
+                  <td>{row.month}</td>
+                  <td>${row.principal}</td>
+                  <td>${row.interest}</td>
+                  <td>${row.balance}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }
